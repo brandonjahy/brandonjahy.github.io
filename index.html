@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Optix</title>
+    <link rel="canonical" href="/">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#ad38f1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Koh+Santepheap:wght@100;300;400;700;900&family=Poppins:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <style>
+      *{box-sizing:border-box}html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}.container{width:90%;height:100%;margin:0 auto}.navbar{width:100%;height:15vh;display:-ms-flexbox;display:flex;-ms-flex-pack:start;justify-content:flex-start;-ms-flex-align:center;align-items:center;-ms-flex-direction:row;flex-direction:row;font-family:'Poppins', sans-serif;font-weight:400;position:-webkit-sticky;position:sticky;top:0;background:#fff;z-index:2}.navbar .logo{margin-left:20px}.navbar .linkbar{margin-left:30px;font-size:16px;-ms-flex-positive:2;flex-grow:2}.navbar .linkbar a{margin-left:40px;text-decoration:none;color:black}.navbar .hamburger{background-color:transparent;border:0;color:#000;font-size:20px;cursor:pointer;display:none}.navbar .hamburger:focus{outline:none}.navbar .login{margin-right:40px}.navbar .login a{color:black;font-size:16px;text-decoration:none;margin-right:20px}.navbar .login button{height:42px;width:180px;color:white;background:#000;border-radius:50px;border:none;font-size:16px}.header{display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;-ms-flex-align:center;align-items:center;margin-bottom:250px}.header .text-block{display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;-ms-flex-align:center;align-items:center;-ms-flex-direction:column;flex-direction:column;margin-top:150px}.header .text-block h1{font-size:3.5rem;width:80%;text-align:center;font-family:'Koh Santepheap', cursive;font-weight:600;padding-bottom:20px}.header .text-block h1 span{position:relative;display:inline-block}.header .text-block h1 span:before{content:" ";position:absolute;left:15px;bottom:5px;height:6px;width:100%;background:#FFF555;z-index:-1}.header .text-block p{width:55%;text-align:center;font-family:'Poppins', sans-serif;font-size:19px;line-height:1.6;margin-bottom:40px}.header .text-block .btn-lay .started{height:45px;width:160px;background:#000;color:white;font-size:16px;border-radius:50px;border:none;margin-right:15px;transition:all .2s ease-in-out}.header .text-block .btn-lay .started:hover{background-color:yellow;color:black}.header .text-block .btn-lay .video{width:230px;height:45px;background:#fff;font-size:16px;border-radius:50px;border:1px solid #000;margin-left:15px;transition:all .2s ease-in-out}.header .text-block .btn-lay .video:hover{background-color:yellow;color:black}.cards{width:100%;margin-bottom:200px}.cards .card-block{display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;-ms-flex-align:center;align-items:center;-ms-flex-direction:row;flex-direction:row;font-family:'Poppins', sans-serif}.cards .card-block .card1{height:400px;width:28%;background:#f6f6f6;border-radius:5px;margin:0 20px}.cards .card-block .card1 .text-block{margin-left:30px;margin-top:40px}.cards .card-block .card1 .text-block i{font-size:3.5rem;margin-bottom:30px}.cards .card-block .card1 .text-block h1{font-size:32px;width:90%;font-weight:600;font-family:'Koh Santepheap', cursive;margin-bottom:20px}.cards .card-block .card1 .text-block p{font-size:18px;line-height:1.8;width:90%}.cards .card-block .card2{height:400px;width:28%;background:#f6f6f6;border-radius:5px;margin:0 20px}.cards .card-block .card2 .text-block{margin-left:30px;margin-top:40px}.cards .card-block .card2 .text-block i{font-size:3.5rem;margin-bottom:30px}.cards .card-block .card2 .text-block h1{font-size:32px;font-weight:600;font-family:'Koh Santepheap', cursive;margin-bottom:20px}.cards .card-block .card2 .text-block p{font-size:18px;line-height:1.8;width:90%}.cards .card-block .card3{height:400px;width:28%;background:#f6f6f6;border-radius:5px;margin:0 20px}.cards .card-block .card3 .text-block{margin-left:30px;margin-top:40px}.cards .card-block .card3 .text-block i{font-size:3.5rem;margin-bottom:30px}.cards .card-block .card3 .text-block h1{font-size:32px;font-weight:600;font-family:'Koh Santepheap', cursive;margin-bottom:20px}.cards .card-block .card3 .text-block p{font-size:18px;line-height:1.8;width:90%}.brands{display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;-ms-flex-align:center;align-items:center;-ms-flex-direction:column;flex-direction:column;margin:200px 0}.brands .text-block{display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;-ms-flex-align:center;align-items:center;-ms-flex-direction:column;flex-direction:column;margin-bottom:70px}.brands .text-block h1{font-size:3.5rem;font-weight:600;text-align:center;width:70%;margin-bottom:20px}.brands .text-block p{width:48%;text-align:center;font-weight:300;font-size:22px;font-family:'Poppins', sans-serif}.brands .logo-block{width:70%;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;-ms-flex-align:center;align-items:center;-ms-flex-direction:row;flex-direction:row}.brands .logo-block img{width:120px}.gif1{width:100%;height:100vh}.gif1 .left{float:left;width:50%}.gif1 .left video{height:500px;width:100%}.gif1 .right{width:50%;float:right}.gif1 .right .text-block{margin-left:60px}.gif1 .right .text-block h1{font-size:3rem;font-weight:600;width:90%;font-family:'Koh Santepheap', cursive;margin-bottom:40px;margin-top:20px}.gif1 .right .text-block h3{font-family:'Poppins', sans-serif;font-size:18px;font-weight:400;margin-bottom:30px}.gif1 .right .text-block p{font-family:'Poppins', sans-serif;font-size:16px;font-weight:300;margin-bottom:30px;line-height:1.4;letter-spacing:1.3px}.gif1 .right .text-block a{font-size:18px;color:black;font-weight:500;text-decoration:none;font-family:'Poppins', sans-serif}.gif2{width:100%;height:100vh}.gif2 .right{float:right;width:50%}.gif2 .right video{height:500px;width:100%}.gif2 .left{float:left;width:50%}.gif2 .left .text-block{margin-left:20px}.gif2 .left .text-block h1{font-size:3rem;font-weight:600;width:90%;font-family:'Koh Santepheap', cursive;margin-bottom:40px;margin-top:20px}.gif2 .left .text-block h3{font-family:'Poppins', sans-serif;font-size:18px;font-weight:400;margin-bottom:30px}.gif2 .left .text-block p{font-family:'Poppins', sans-serif;font-size:16px;font-weight:300;margin-bottom:30px;line-height:1.4;letter-spacing:1.3px}.gif2 .left .text-block a{font-size:18px;color:black;font-weight:500;text-decoration:none;font-family:'Poppins', sans-serif}.grey-zone{height:70vh;width:100%;background-color:#f3f3f3;border-radius:10px;margin-bottom:200px}.grey-zone .left{width:50%;float:left}.grey-zone .left h1{font-size:3rem;font-weight:600;width:90%;font-family:'Koh Santepheap', cursive;margin-bottom:40px;margin-top:150px;margin-left:100px}.grey-zone .left p{font-family:'Poppins', sans-serif;font-size:16px;font-weight:300;margin-left:100px;margin-bottom:30px;line-height:1.4;letter-spacing:1.3px}.grey-zone .left a{font-size:18px;color:black;font-weight:500;text-decoration:none;font-family:'Poppins', sans-serif;margin-left:100px}.grey-zone .right{float:right;height:100%;width:50%}.grey-zone .right .block{height:80%;width:80%;margin-left:100px;margin-top:60px}.grey-zone .right .block .box1{height:100%;width:100%}.grey-zone .right .block .box1 img{width:100%}.yellow-zone{height:70vh;width:100%;background-color:#fff554;border-radius:10px;margin-bottom:200px}.yellow-zone .left{width:50%;float:left}.yellow-zone .left h1{font-size:3rem;font-weight:600;width:90%;font-family:'Koh Santepheap', cursive;margin-bottom:40px;margin-top:150px;margin-left:100px}.yellow-zone .left p{font-family:'Poppins', sans-serif;font-size:16px;font-weight:300;margin-left:100px;margin-bottom:30px;line-height:1.4;letter-spacing:1.3px}.yellow-zone .left a{font-size:18px;color:black;font-weight:500;text-decoration:none;font-family:'Poppins', sans-serif;margin-left:100px}.yellow-zone .right{width:50%;float:right}.yellow-zone .right .imgblock{width:100%;height:100%}.yellow-zone .right .imgblock img{width:100%;border-top-right-radius:10px;border-bottom-right-radius:10px}.card-zone{height:60vh;width:100%;margin-bottom:100px}.card-zone .card-block{height:100%;display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;-ms-flex-align:center;align-items:center;-ms-flex-direction:row;flex-direction:row}.card-zone .card-block .card1{height:80%;width:30%;margin:0 50px;border-radius:10px;box-shadow:2px 2px 9px -3px rgba(0,0,0,0.75);-webkit-box-shadow:2px 2px 9px -3px rgba(0,0,0,0.75);-moz-box-shadow:2px 2px 9px -3px rgba(0,0,0,0.75);transition:all .2s ease-in-out}.card-zone .card-block .card1 .top{height:60%;width:100%}.card-zone .card-block .card1 .top img{border-top-right-radius:10px;border-top-left-radius:10px;height:100%;width:100%}.card-zone .card-block .card1 .info{height:40%;width:100%}.card-zone .card-block .card1 .info h1{font-size:30px;margin:15px 20px;font-family:'Koh Santepheap', cursive}.card-zone .card-block .card1 .info p{font-family:'Poppins', sans-serif;font-size:14px;margin:0 20px}.card-zone .card-block .card1:hover{transform:scale(1.1);box-shadow:2px 2px 9px 3px rgba(0,0,0,0.75);-webkit-box-shadow:2px 2px 9px 3px rgba(0,0,0,0.75);-moz-box-shadow:2px 2px 9px 3px rgba(0,0,0,0.75)}.card-zone .card-block .card2{height:80%;width:30%;margin:0 50px;border-radius:10px;box-shadow:2px 2px 9px -3px rgba(0,0,0,0.75);-webkit-box-shadow:2px 2px 9px -3px rgba(0,0,0,0.75);-moz-box-shadow:2px 2px 9px -3px rgba(0,0,0,0.75);transition:all .2s ease-in-out}.card-zone .card-block .card2 .top{height:60%;width:100%}.card-zone .card-block .card2 .top img{border-top-right-radius:10px;border-top-left-radius:10px;height:100%;width:100%}.card-zone .card-block .card2 .info{height:40%;width:100%}.card-zone .card-block .card2 .info h1{font-size:30px;margin:15px 20px;font-family:'Koh Santepheap', cursive}.card-zone .card-block .card2 .info p{font-family:'Poppins', sans-serif;font-size:14px;margin:0 20px}.card-zone .card-block .card2:hover{transform:scale(1.1);box-shadow:2px 2px 9px 3px rgba(0,0,0,0.75);-webkit-box-shadow:2px 2px 9px 3px rgba(0,0,0,0.75);-moz-box-shadow:2px 2px 9px 3px rgba(0,0,0,0.75)}.card-zone .card-block .card3{height:80%;width:30%;margin:0 50px;border-radius:10px;box-shadow:2px 2px 9px -3px rgba(0,0,0,0.75);-webkit-box-shadow:2px 2px 9px -3px rgba(0,0,0,0.75);-moz-box-shadow:2px 2px 9px -3px rgba(0,0,0,0.75);transition:all .2s ease-in-out}.card-zone .card-block .card3 .top{height:60%;width:100%}.card-zone .card-block .card3 .top img{border-top-right-radius:10px;border-top-left-radius:10px;height:100%;width:100%}.card-zone .card-block .card3 .info{height:40%;width:100%}.card-zone .card-block .card3 .info h1{font-size:26px;margin:15px 20px;font-family:'Koh Santepheap', cursive}.card-zone .card-block .card3 .info p{font-family:'Poppins', sans-serif;font-size:14px;margin:0 20px}.card-zone .card-block .card3:hover{transform:scale(1.1);box-shadow:2px 2px 9px 3px rgba(0,0,0,0.75);-webkit-box-shadow:2px 2px 9px 3px rgba(0,0,0,0.75);-moz-box-shadow:2px 2px 9px 3px rgba(0,0,0,0.75)}.sub-footer{height:50vh;width:100%;margin-bottom:50px}.sub-footer .text-block{height:100%;width:100%;display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;-ms-flex-align:center;align-items:center;-ms-flex-direction:column;flex-direction:column}.sub-footer .text-block h1{font-size:2.8rem;width:50%;font-family:'Koh Santepheap', cursive;font-weight:700;text-align:center;margin-bottom:25px}.sub-footer .text-block .email-signup{width:50%;display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;text-align:center;-ms-flex-direction:row;flex-direction:row;margin-bottom:30px}.sub-footer .text-block .email-signup input[type=text]{height:45px;width:50%;border:2px solid black;border-radius:5px}.sub-footer .text-block .email-signup button{background:#000;width:150px;color:white;font-family:'Poppins', sans-serif;border-left:none;border-top:none;border-bottom:none;border-top-right-radius:5px;border-bottom-right-radius:5px;margin-left:-10px}.sub-footer .text-block .checkbox{display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;-ms-flex-align:center;align-items:center;-ms-flex-direction:row;flex-direction:row;font-family:'Poppins', sans-serif}.sub-footer .text-block .checkbox h5{padding:0 15px;font-weight:300;font-size:20px}.footer{width:100%}.footer .col-box{display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;-ms-flex-align:center;align-items:center;-ms-flex-direction:row;flex-direction:row;font-family:'Poppins', sans-serif;padding:30px 0}.footer .col-box .col1{margin-top:20px;-ms-flex-positive:1;flex-grow:1;-ms-flex-item-align:start;align-self:flex-start;width:20%}.footer .col-box .col2{margin-top:50px;width:20%;-ms-flex-positive:1;flex-grow:1}.footer .col-box .col2 .title{font-size:20px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px}.footer .col-box .col2 .tag{font-size:14px;color:#757575;padding:10px 0}.footer .col-box .col3{margin-top:20px;width:20%;-ms-flex-positive:1;flex-grow:1}.footer .col-box .col3 .title{font-size:20px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px}.footer .col-box .col3 .tag{font-size:14px;color:#757575;padding:10px 0}.footer .col-box .col4{width:20%;-ms-flex-positive:1;flex-grow:1;margin-bottom:50px}.footer .col-box .col4 .title{font-size:20px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px}.footer .col-box .col4 .tag{font-size:14px;color:#757575;padding:10px 0}.footer .col-box .col5{width:30%;-ms-flex-positive:1;flex-grow:1;margin-bottom:50px}.footer .col-box .col5 .title{font-size:20px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px}.footer .col-box .col5 .tag{font-size:16px;color:#757575;padding:10px 0}.footer .col-box .col5 p{color:#757575;font-size:12px;margin-top:10px}
+    </style>
+
+    <style>
+
+@media screen and (max-width: 1024px) {
+    .logo {
+        flex-grow: 1;
+    }
+    .linkbar {
+        display: none;
+    }
+    .linkbar.show {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 0;
+        margin-left: 0;
+        top: 100px;
+        background: #fff;
+        left: 85%;
+        text-align: center;
+        position: absolute;
+    }
+    .linkbar.show a{
+        padding: 5px 20px 0 0;
+    }
+    #hamburger {
+        display: block;
+        
+    }
+    .login {
+        display: none;
+    }
+    #cards .card-block .card1 .text-block p {
+        font-size: 15px;
+    }
+    #cards .card-block .card2 .text-block p {
+        font-size: 15px;
+    }
+    #cards .card-block .card3 .text-block p {
+        font-size: 15px;
+    }
+    #brands .logo-block {
+        width: 90%;
+    }
+    #gif1 {
+        height: 80vh;
+    }
+    #gif1 .right .text-block h1 {
+        font-size: 1.8rem;   
+    }
+    #gif2 {
+        height: 80vh;
+    }
+    #gif2 .left .text-block h1 {
+        font-size: 1.8rem;
+    }
+    #grey-zone {
+        height: 54vh;
+    }
+    #grey-zone .left h1 {
+        margin-top: 90px;
+    }
+    #yellow-zone {
+        height: 48vh;
+    }
+    #yellow-zone .left h1 {
+        margin-top: 90px;
+        margin-left: 40px;
+        font-size: 1.8rem;
+    }
+    #yellow-zone .left p {
+        margin-left: 40px;
+        font-size: 13px;
+        width: 90%;
+    }
+    #yellow-zone .left a {
+        margin-left: 40px;
+        font-size: 15px;
+    }
+    #yellow-zone .right .imgblock img {
+        height: 393px;
+    }
+    #card-zone .card-block .card1 {
+        width: 35%;
+        margin: 0 10px;
+    }
+    #card-zone .card-block .card2 {
+        width: 35%;
+        margin: 0 10px;
+    }
+    #card-zone .card-block .card3 {
+        width: 35%;
+        margin: 0 10px;
+    }
+    #sub-footer .text-block h1 {
+        width: 55%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .logo {
+        flex-grow: 1;
+    }
+    .linkbar {
+        display: none;
+    }
+    .linkbar.show {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 0;
+        margin-left: 0;
+        top: 100px;
+        left: 75%;
+        text-align: center;
+        background: #fff;
+        position: absolute;
+    }
+    .linkbar.show a{
+        padding: 5px 20px 0 0;
+    }
+    #hamburger {
+        display: block;
+        
+    }
+    .login {
+        display: none;
+    }
+    #cards .card-block .card1 .text-block p {
+        font-size: 12px;
+    }
+    #cards .card-block .card1 .text-block h1 {
+        font-size: 24px;
+    } 
+    #cards .card-block .card2 .text-block p {
+        font-size: 12px;
+    }
+    #cards .card-block .card2 .text-block h1 {
+        font-size: 24px;
+    } 
+    #cards .card-block .card3 .text-block p {
+        font-size: 12px;
+    }
+    #cards .card-block .card3 .text-block h1 {
+        font-size: 24px;
+    } 
+    #brands .logo-block {
+        width: 90%;
+    }
+    #brands .logo-block img {
+        width: 100px;
+    }
+    #gif1 {
+        height: 80vh;
+    }
+    #gif1 .right .text-block h1 {
+        font-size: 1.2rem;   
+    }
+    #gif1 .right .text-block h3 {
+        font-size: 14px;
+    }
+    #gif1 .right .text-block p {
+        font-size: 12px;
+    }
+    #gif2 {
+        height: 80vh;
+    }
+    #gif2 .left .text-block h1 {
+        font-size: 1.2rem;
+    }
+    #gif2 .left .text-block h3 {
+        font-size: 14px;
+    }
+    #gif2 .left .text-block p {
+        font-size: 12px;
+    }
+    #grey-zone {
+        height: 54vh;
+    }
+    #grey-zone .left h1 {
+        margin-top: 40px;
+        margin-left: 30px;
+        font-size: 2rem;
+    }
+    #grey-zone .left p {
+        margin-left: 30px;
+    }
+    #grey-zone .left a {
+        margin-left: 30px;
+    }
+    #grey-zone .right .block {
+        margin-left: 60px;
+    }
+    #yellow-zone {
+        height: 48vh;
+    }
+    #yellow-zone .left h1 {
+        margin-top: 50px;
+        margin-left: 40px;
+        font-size: 1.8rem;
+    }
+    #yellow-zone .left p {
+        margin-left: 40px;
+        font-size: 12px;
+        width: 80%;
+    }
+    #yellow-zone .left a {
+        margin-left: 40px;
+        font-size: 15px;
+    }
+    #yellow-zone .right .imgblock img {
+        height: 393px;
+    }
+    #card-zone .card-block .card1 {
+        width: 35%;
+        margin: 0 10px;
+    }
+    #card-zone .card-block .card1 .info h1 {
+        font-size: 24px;
+    }
+    #card-zone .card-block .card1 .info p {
+        font-size: 12px;
+    }
+    #card-zone .card-block .card2 {
+        width: 35%;
+        margin: 0 10px;
+    }
+    #card-zone .card-block .card2 .info h1 {
+        font-size: 24px;
+    }
+    #card-zone .card-block .card2 .info p {
+        font-size: 12px;
+    }
+    #card-zone .card-block .card3 {
+        width: 35%;
+        margin: 0 10px;
+    }
+    #card-zone .card-block .card3 .info h1 {
+        font-size: 24px;
+    }
+    #card-zone .card-block .card3 .info p {
+        font-size: 12px;
+    }
+    #sub-footer .text-block h1 {
+        width: 55%;
+    }
+    #footer .col-box .col2 .title {
+        font-size: 16px;
+    }
+    #footer .col-box .col2 .tag {
+        font-size: 12px;
+    }
+    #footer .col-box .col3 .title {
+        font-size: 16px;
+    }
+    #footer .col-box .col3 .tag {
+        font-size: 12px;
+    }
+    #footer .col-box .col4 .title {
+        font-size: 16px;
+    }
+    #footer .col-box .col4 .tag {
+        font-size: 12px;
+    }
+    #footer .col-box .col5 .title {
+        font-size: 16px;
+    }
+    #footer .col-box .col5 .tag {
+        font-size: 12px;
+    }
+    #footer .col-box .col5 p {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    #container {
+        width: 100%;
+        margin-left: 25px;
+    }
+    .logo {
+        flex-grow: 1;
+    }
+    .linkbar {
+        display: none;
+    }
+    .linkbar.show {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 0;
+        margin-left: 0;
+        top: 100px;
+        left: 75%;
+        text-align: center;
+        background: #fff;
+        position: absolute;
+    }
+    .linkbar.show a{
+        padding: 5px 20px 0 0;
+    }
+    #hamburger {
+        display: block;
+    }
+    .login {
+        display: none;
+    }
+    #header .text-block h1 {
+        font-size: 2rem;
+        width: 90%;
+    }
+    #header .text-block p {
+        width: 70%;
+        font-size: 15px;
+    }
+    #header .text-block .btn-lay {
+        display: flex;
+    }
+    #cards .card-block .card1 {
+        height: 330px;
+        width: 35%;
+        margin: 0 5px;
+    }
+    #cards .card-block .card1 .text-block i {
+        font-size: 1.5rem;
+    }
+    #cards .card-block .card1 .text-block p {
+        font-size: 12px;
+        line-height: 1.2;
+    }
+    #cards .card-block .card1 .text-block h1 {
+        font-size: 18px;
+    } 
+    #cards .card-block .card2 {
+        height: 330px;
+        width: 35%;
+    }
+    #cards .card-block .card2 .text-block i {
+        font-size: 1.5rem;
+    }
+    #cards .card-block .card2 .text-block p {
+        font-size: 10px;
+        line-height: 1.2;
+    }
+    #cards .card-block .card2 .text-block h1 {
+        font-size: 18px;
+    } 
+    #cards .card-block .card3 {
+        height: 330px;
+        width: 35%;
+    }
+    #cards .card-block .card3 .text-block i {
+        font-size: 1.5rem;
+    }
+    #cards .card-block .card3 .text-block p {
+        font-size: 10px;
+        line-height: 1.2;
+    }
+    #cards .card-block .card3 .text-block h1 {
+        font-size: 18px;
+    } 
+    #brands .text-block h1 {
+        font-size: 1.8rem;
+    }
+    #brands .text-block p {
+        font-size: 15px;
+        width: 60%;
+    }
+    #brands .logo-block {
+        width: 90%;
+    }
+    #brands .logo-block img {
+        width: 60px;
+    }
+    #gif1 {
+        height: 80vh;
+    }
+    #gif1 .right .text-block h1 {
+        font-size: 16px;   
+        margin-bottom: 20px;
+    }
+    #gif1 .right .text-block h3 {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+    #gif1 .right .text-block p {
+        font-size: 8px;
+    }
+    #gif1 .right .text-block a {
+        font-size: 9px;
+    }
+    #gif2 {
+        height: 80vh;
+    }
+    #gif2 .left .text-block h1 {
+        font-size: 16px;   
+        margin-bottom: 20px;
+    }
+    #gif2 .left .text-block h3 {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+    #gif2 .left .text-block p {
+        font-size: 8px;
+    }
+    #gif2 .right .text-block a {
+        font-size: 9px;
+    }
+    #grey-zone {
+        height: 34vh;
+    }
+    #grey-zone .left h1 {
+        margin-top: 40px;
+        margin-left: 18px;
+        font-size: 1.2rem;
+    }
+    #grey-zone .left p {
+        font-size: 11px;
+        margin-left: 18px;
+    }
+    #grey-zone .left a {
+        margin-left: 18px;
+        font-size: 12px;
+    }
+    #grey-zone .right .block {
+        margin-left: 30px;
+    }
+    #yellow-zone {
+        height: 42vh;
+    }
+    #yellow-zone .left h1 {
+        margin-top: 50px;
+        margin-left: 10px;
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+    #yellow-zone .left p {
+        margin-left: 10px;
+        font-size: 8px;
+        width: 80%;
+    }
+    #yellow-zone .left a {
+        margin-left: 10px;
+        font-size: 9px;
+    }
+    #yellow-zone .right .imgblock img {
+        height: 308px;
+    }
+    #card-zone {
+        display: none;
+    }
+    #card-zone .card-block .card1 {
+        height: 65%;
+        width: 35%;
+        margin: 0 10px;
+    }
+    #card-zone .card-block .card1 .info h1 {
+        font-size: 15px;
+    }
+    #card-zone .card-block .card1 .info p {
+        font-size: 12px;
+        margin: 10px 20px;
+    }
+    #card-zone .card-block .card2 {
+        width: 35%;
+        margin: 0 10px;
+    }
+    #card-zone .card-block .card2 .info h1 {
+        font-size: 24px;
+    }
+    #card-zone .card-block .card2 .info p {
+        font-size: 12px;
+    }
+    #card-zone .card-block .card3 {
+        width: 35%;
+        margin: 0 10px;
+    }
+    #card-zone .card-block .card3 .info h1 {
+        font-size: 24px;
+    }
+    #card-zone .card-block .card3 .info p {
+        font-size: 12px;
+    }
+    #sub-footer .text-block h1 {
+        width: 100%;
+        font-size: 24px;
+    }
+    #sub-footer .text-block .email-signup {
+        width: 100%;
+    }
+    #sub-footer .text-block .checkbox h5 {
+        font-size: 12px;
+    }
+    #footer .col-box .col2 .title {
+        font-size: 11px;
+    }
+    #footer .col-box .col2 .tag {
+        font-size: 6px;
+    }
+    #footer .col-box .col3 .title {
+        font-size: 11px;
+    }
+    #footer .col-box .col3 .tag {
+        font-size: 6px;
+    }
+    #footer .col-box .col4 .title {
+        font-size: 11px;
+    }
+    #footer .col-box .col4 .tag {
+        font-size: 6px;
+    }
+    #footer .col-box .col5 .title {
+        font-size: 11px;
+    }
+    #footer .col-box .col5 .tag {
+        font-size: 6px;
+    }
+    #footer .col-box .col5 p {
+        font-size: 4px;
+    }
+}
+    </style>
+
+  </head>
+  <body>
+  <div class="container" id="container">
+    <section class="navbar">
+      <div class="logo">
+        <img src="https://www.optixapp.com/assets/common/optix-logo.svg" alt="">
+      </div>
+      <button class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="linkbar" id="linkbar">
+        <a href="#">Features</a>
+        <a href="#">Intergrations</a>
+        <a href="#">Pricing</a>
+        <a href="#">Customers</a>
+        <a href="#">Blog</a>
+      </div>
+      <div class="login">
+        <a href="#">Sign in</a>
+        <button>Book a Demo</button>
+      </div>
+    </section>
+    <section class="header" id="header">
+      <div class="text-block">
+        <h1>The platform for <span>coworking spaces</span> and <span>flexible offices</span></h1>
+        <p>Optix seamlessly connects your users with the community, resources, and services that your workplace has to offer.</p>
+        <div class="btn-lay">
+          <button class="started">Get started</button>
+          <button class="video">Watch the video <i class="far fa-play-circle"></i></button>
+        </div>
+      </div>
+    </section>
+    <section class="cards" id="cards">
+      <div class="card-block">
+        <div class="card1">
+          <div class="text-block">
+            <i class="fas fa-random"></i>
+            <h1>Transform your flex space</h1>
+            <p>Power your coworking space with the right tools, designed to meet the needs of today's flexible and hybrid work models.</p>
+          </div>
+        </div>
+        <div class="card2">
+          <div class="text-block">
+            <i class="fas fa-mobile-alt"></i>
+            <h1>Elevate your experience</h1>
+            <p>Make a strong impression with your while-labeled mobile apps. Beautifully showcase your brand to the world.</p>
+          </div>
+        </div>
+        <div class="card3">
+          <div class="text-block">
+            <i class="far fa-grin"></i>
+            <h1>Engage your community</h1>
+            <p>Offer your users the ultimate coworking experience. Leverage data and insights to better tailor your offering.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="brands" id="brands">
+      <div class="text-block">
+        <h1>Coworking and flex workplace brands love Optix</h1>
+        <p>Discover how leading brands use Optix to enable an experience-centric workplace</p>
+      </div>
+      <div class="logo-block">
+        <img class="thrive" src="https://www.optixapp.com/assets/home/logos/thrive@2x.png" alt="">
+        <img class="1800" src="https://www.optixapp.com/assets/home/logos/1880-logo@2x.png" alt="">
+        <img src="https://www.optixapp.com/assets/home/logos/cloud-room@2x.png" alt="">
+        <img src="https://www.optixapp.com/assets/home/logos/flockd@2x.png" alt="">
+        <img src="https://www.optixapp.com/assets/home/logos/highland@2x.png" alt="">
+      </div>
+    </section>
+    <section class="gif1" id="gif1">
+      <div class="left">
+        <video autoplay="" playsinline="" loop="" muted="" style="max-width:100%">
+          <source src="https://www.optixapp.com/assets/videos/app-showcase.mp4" type="video/mp4">
+      </video>
+      </div>
+      <div class="right">
+        <div class="text-block">
+          <h1>A white-labeled app for your workplace, and everything in it</h1>
+          <h3>Tailored to you. By you.</h3>
+          <p>A fully customizable and branded workplace app. Craft your community's experience with select tools and features.</p>
+          <h3>Anytime, anywhere.</h3>
+          <p>Your entire coworking community is simply a tap away. Discover more ways to engage and delight users beyond beautiful spaces.</p>
+          <a href="#">Explore the benefits <i class="fas fa-long-arrow-alt-right"></i></a>
+        </div>
+      </div>
+    </section>
+    <section class="gif2" id="gif2">
+      <div class="right">
+        <video autoplay="" playsinline="" loop="" muted="" style="max-width:100%">
+          <source src="https://www.optixapp.com/assets/videos/web-showcase.mp4" type="video/mp4">
+        </video> 
+      </div>
+      <div class="left">
+        <div class="text-block">
+          <h1>Meet your next flexible workplace operating system</h1>
+          <h3>Everything admins need. All-in-one platform.</h3>
+          <p>Manage all of the services, amenities, and resources that your flexible workplace has to offer. Your workflows and integrations can play too.</p>
+          <h3>Let Optix run your workplace. You run your business.</h3>
+          <p>Optix simplifies managing coworking spaces and flexible offices, so that you can focus on growing your business.</p>
+          <a href="#">Explore the benefits <i class="fas fa-long-arrow-alt-right"></i></a>
+        </div>
+      </div>
+    </section>
+    <section class="grey-zone" id="grey-zone">
+      <div class="left">
+        <h1>3,000+ effortless integrations</h1>
+        <p>We play nicely with all the apps you love. Power up your operations with workflows and automation.</p>
+        <a href="#">Discover more <i class="fas fa-long-arrow-alt-right"></i></a>
+      </div>
+      <div class="right">
+        <div class="block">
+          <div class="box1">
+            <img src="https://www.optixapp.com/assets/home/desktop/integrations@2x.png" alt="">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="yellow-zone" id="yellow-zone">
+      <div class="left">
+        <h1>We're on a mission. Join us.</h1>
+        <p>We are a team of entrepreneurs, engineers, and creatives building solutions to power the future of work.</p>
+        <p>We believe that a thoughtful and well-designed digital experience is essential to enable the needs of today's flexible and hybrid workplaces.</p>
+        <a href="#">Learn about our mission <i class="fas fa-long-arrow-alt-right"></i></a>
+      </div>
+      <div class="right">
+        <div class="imgblock">
+          <img src="https://www.optixapp.com/assets/home/desktop/mission@2x.jpg" alt="">
+        </div>
+      </div>
+    </section>
+    <section class="card-zone" id="card-zone">
+      <div class="card-block">
+        <div class="card1">
+          <div class="top">
+            <img src="https://www.optixapp.com/assets/case-studies/cards/1880case@3x.jpg" alt="">
+          </div>
+          <div class="info">
+            <h1>1880 Bardo</h1>
+            <p>Blurring the lines between work and leisure to create a community around meaningful conversations.</p>
+          </div>
+        </div>
+        <div class="card2">
+          <div class="top">
+            <img src="https://www.optixapp.com/assets/case-studies/cards/terkko@2x.png" alt="">
+          </div>
+          <div class="info">
+            <h1>Terkko Health Hub</h1>
+            <p>Empowering health tech and life-science start-ups with a space tailored for collaboration, networking, and growth.</p>
+          </div>
+        </div>
+        <div class="card3">
+          <div class="top">
+            <img src="https://www.optixapp.com/assets/case-studies/cards/bnz-case@2x.jpg" alt="">
+          </div>
+          <div class="info">
+            <h1>Community 101, Bank of New Zealand</h1>
+            <p>Powering on-demand workspaces for small and medium business owners.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="sub-footer" id="sub-footer">
+      <div class="text-block">
+        <h1>Experience Optix coworking software free for 14 days</h1>
+        <div class="email-signup">
+          <input type="text" placeholder="Enter your email">
+          <button>book a demo</button>
+        </div>
+        <div class="checkbox">
+          <h5><i class="fas fa-check-circle"></i> 14 day trial</h5>
+          <h5><i class="fas fa-check-circle"></i> No card required</h5>
+          <h5><i class="fas fa-check-circle"></i> Full experience</h5>
+        </div>
+      </div>
+    </section>
+    <section class="footer" id="footer">
+      <hr>
+      <div class="col-box">
+        <div class="col1">
+          <div class="logo">
+            <img src="https://www.optixapp.com/assets/common/optix-logo.svg" alt="">
+          </div>
+        </div>
+        <div class="col2">
+          <h3 class="title">Solution</h3>
+          <h5 class="tag">Features</h5>
+          <h5 class="tag">Integrations</h5>
+          <h5 class="tag">Pricing</h5>
+          <h5 class="tag">Coworking</h5>
+          <h5 class="tag">Flex Workplace</h5>
+          <h5 class="tag">Developer platform</h5>
+        </div>
+        <div class="col3">
+          <h3 class="title">Resources</h3>
+          <h5 class="tag">Blog</h5>
+          <h5 class="tag">Customer stories</h5>
+          <h5 class="tag">Product reviews</h5>
+          <h5 class="tag">Help center</h5>
+          <h5 class="tag">contact us</h5>
+        </div>
+        <div class="col4">
+          <h3 class="title">Company</h3>
+          <h5 class="tag">Story</h5>
+          <h5 class="tag">Careers</h5>
+          <h5 class="tag">Press</h5>
+        </div>
+        <div class="col5">
+          <h3 class="title">SUBSCRIBE TO OUR NEWSLETTER</h3>
+          <h5 class="tag">A monthly newsletter on the future of work, coworking resources, and updates to our product!</h5>
+          <p>By entering your email address you are providing us with consent to send you our newsletter and marketing emails.</p>
+        </div>
+      </div>
+      <hr>
+    </section>
+  </div>
+
+
+
+    <script>
+      const hamburger = document.getElementById('hamburger')
+      const navlist = document.getElementById('linkbar')
+
+      hamburger.addEventListener('click', () => {
+        navlist.classList.toggle('show')
+      })
+    </script>
+
+  </body>
+</html>
