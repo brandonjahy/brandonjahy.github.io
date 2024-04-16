@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <meta name="format-detection" content="telephone=no,address=no,email=no,date=no,url=no"> <!-- Tell iOS not to automatically link certain text strings. -->
+    <meta name="color-scheme" content="light dark">
+    <meta name="supported-color-schemes" content="light dark">
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- What it does: Makes background images in 72ppi Outlook render at correct size. -->
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+    </xml>
+    <![endif]-->
+
+    <!-- Web Font / @font-face : BEGIN -->
+    <!-- NOTE: If web fonts are not required, lines 23 - 41 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: https://web.archive.org/web/20190717120616/http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+    <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+    <!-- CSS Reset : BEGIN -->
+    <style>
+
+        /* What it does: Tells the email client that both light and dark styles are provided. A duplicate of meta color-scheme meta tag above. */
+        :root {
+          color-scheme: light dark;
+          supported-color-schemes: light dark;
+        }
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What it does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin: 0 !important;
+        }
+
+        /* What it does: forces Samsung Android mail clients to use the entire viewport */
+        #MessageViewBody, #MessageWebViewDiv{
+            width: 100% !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Replaces default bold style. */
+        th {
+        	font-weight: normal;
+        }
+
+        /* What it does: Fixes webkit padding issue. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+
+        /* What it does: Prevents Windows 10 Mail from underlining links despite inline CSS. Styles for underlined links should be inline. */
+        a {
+            text-decoration: none;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: A work-around for email clients meddling in triggered links. */
+        a[x-apple-data-detectors],  /* iOS */
+        .unstyle-auto-detected-links a,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+            color: inherit !important;
+            text-decoration: none !important;
+            font-size: inherit !important;
+            font-family: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+        }
+
+        /* What it does: Prevents Gmail from changing the text color in conversation threads. */
+        .im {
+            color: inherit !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying a download button on large, non-linked images. */
+        .a6S {
+           display: none !important;
+           opacity: 0.01 !important;
+		}
+		/* If the above doesn't work, add a .g-img class to any image in question. */
+		img.g-img + div {
+		   display: none !important;
+		}
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+
+        /* iPhone 4, 4S, 5, 5S, 5C, and 5SE */
+        @media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+            u ~ div .email-container {
+                min-width: 320px !important;
+            }
+        }
+        /* iPhone 6, 6S, 7, 8, and X */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+            u ~ div .email-container {
+                min-width: 375px !important;
+            }
+        }
+        /* iPhone 6+, 7+, and 8+ */
+        @media only screen and (min-device-width: 414px) {
+            u ~ div .email-container {
+                min-width: 414px !important;
+            }
+        }
+
+    </style>
+    <!-- CSS Reset : END -->
+
+    <!-- Progressive Enhancements : BEGIN -->
+    <style>
+
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+	    .button-td-primary:hover,
+	    .button-a-primary:hover {
+	        background: #555555 !important;
+	        border-color: #555555 !important;
+	    }
+
+        /* Media Queries */
+        @media screen and (max-width: 600px) {
+
+            .email-container {
+                width: 100% !important;
+                margin: auto !important;
+            }
+
+            /* What it does: Forces table cells into full-width rows. */
+            .stack-column,
+            .stack-column-center {
+                display: block !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                direction: ltr !important;
+            }
+            /* And center justify these ones. */
+            .stack-column-center {
+                text-align: center !important;
+            }
+
+            /* What it does: Generic utility class for centering. Useful for images, buttons, and nested tables. */
+            .center-on-narrow {
+                text-align: center !important;
+                display: block !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                float: none !important;
+            }
+            table.center-on-narrow {
+                display: inline-block !important;
+            }
+
+            /* What it does: Adjust typography on small screens to improve readability */
+            .email-container p {
+                font-size: 17px !important;
+            }
+        }
+
+        /* Dark Mode Styles : BEGIN */
+        @media (prefers-color-scheme: dark) {
+            .email-bg {
+                background: #eeeeee !important;
+            }
+            .darkmode-bg {
+                background: #ffffff !important;
+            }
+            h1,
+            h2,
+            h3,
+            p,
+            li,
+            .darkmode-text,
+            .email-container a:not([class]) {
+                color: #000000 !important;
+            }
+            td.button-td-primary,
+            td.button-td-primary a {
+                background: #000000 !important;
+                border-color: #ffffff !important;
+                color: #ffffff !important;
+				font-size: 20px;
+				font-weight: 600;
+				margin: 0 auto;
+            }
+            td.button-td-primary:hover,
+            td.button-td-primary a:hover {
+                background: #cccccc !important;
+                border-color: #cccccc !important;
+            }
+            .footer td {
+                color: #aaaaaa !important;
+            }
+            .darkmode-fullbleed-bg {
+                background-color: #0F3016 !important;
+            }
+        }
+        /* Dark Mode Styles : END */
+    </style>
+    <!-- Progressive Enhancements : END -->
+
+</head>
+<!--
+	The email background color (#222222) is defined in three places:
+	1. body tag: for most email clients
+	2. center tag: for Gmail and Inbox mobile apps and web versions of Gmail, GSuite, Inbox, Yahoo, AOL, Libero, Comcast, freenet, Mail.ru, Orange.fr
+	3. mso conditional: For Windows 10 Mail
+-->
+<body width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #ffffff;" class="email-bg">
+  <center role="article" aria-roledescription="email" lang="en" style="width: 100%; background-color: #ffffff;" class="email-bg">
+    <!--[if mso | IE]>
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #222222;" class="email-bg">
+    <tr>
+    <td>
+    <![endif]-->
+
+        <!-- Visually Hidden Preheader Text : BEGIN -->
+        <div style="max-height:0; overflow:hidden; mso-hide:all;" aria-hidden="true">
+            (Optional) This text will appear in the inbox preview, but not the email body. It can be used to supplement the email subject line or even summarize the email's contents. Extended text preheaders (~490 characters) seems like a better UX for anyone using a screenreader or voice-command apps like Siri to dictate the contents of an email. If this text is not included, email clients will automatically populate it using the text (including image alt text) at the start of the email's body.
+        </div>
+        <!-- Visually Hidden Preheader Text : END -->
+
+        <!-- Create white space after the desired preview text so email clients don’t pull other distracting text into the inbox preview. Extend as necessary. -->
+        <!-- Preview Text Spacing Hack : BEGIN -->
+        <div style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;">
+            &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+        </div>
+        <!-- Preview Text Spacing Hack : END -->
+
+        <!-- Email Body : BEGIN -->
+        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="margin: auto;" class="email-container">
+	        <!-- Email Header : BEGIN -->
+            <tr>
+                <td style="padding: 20px 0; text-align: center">
+                    <img src="https://ci3.googleusercontent.com/meips/ADKq_NbSnDBuZcN_vinnO4ncJ21OHot1ZbWwVrlN-moH7maLOlDlmPScR0n9ph8o70r0t-t8zjrZyoPZ49O2FdDBEGWJVwFtLIVJ_EmGBXvyk1h3kDiHOiKshr6L=s0-d-e1-ft#https://images.usw2.cordial.com/1491/600x84/JoAnn_Logo_20170809.png" width="200" height="50" alt="alt_text" border="0" style="height: auto;  font-family: sans-serif; font-size: 15px; line-height: 15px; color: #555555;">
+                </td>
+            </tr>
+	        <!-- Email Header : END -->
+
+            <!-- Hero Image, Flush : BEGIN -->
+            <tr>
+                <td style="background-color: #ffffff;" class="darkmode-bg">
+                   <a href="https://www.joann.com/weekly-ad/?path=departments/5232003&utm_source=Joann&utm_medium=Email&utm_content=HTML&utm_campaign=20240411_E1_AM_SEWING_Subevent&bxid=6338f27cc9a11c3d540dcc58#deeplink" target="_blank"><img src="https://ci3.googleusercontent.com/meips/ADKq_NZgs9NieWTCL-lQHZaCspuTPLFrs4_Wn5NkegcTN6agobPtJ6DVWR7S0aX0UbE2LXrQH5ZbqMdf3OWEcsDftotxZtrxCL_8kXQRcvN6VSFb02_-PueqXoyXMz-q4wA_v1ruK4g_5Xs=s0-d-e1-ft#https://images.usw2.cordial.com/1563/600x600/20240411_savings_in_bloom_header.jpg" width="600" height="" alt="alt_text" border="0" style="width: 100%; max-width: 600px; height: auto; background: #ffffff; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #555555; margin: auto; display: block; cursor: pointer;" class="g-img"></a>
+                </td>
+            </tr>
+			<tr>
+                <td style="background-color: #ffffff;" class="darkmode-bg">
+                   <a href="https://www.joann.com/fabric/fleece-fabric/?utm_source=Joann&utm_medium=Email&utm_content=HTML&utm_campaign=20240411_E1_AM_SEWING_Subevent&bxid=6338f27cc9a11c3d540dcc58#deeplink" target="_blank"><img src="https://ci3.googleusercontent.com/meips/ADKq_NZVJ7Gm5v1wDIWusO82tdbQK5ZUcb-bSjipTSyTztUetUNDLp06HtJKXTNrvzuRj-hMW_6tzg_cyuIf0VyrxQCB4rsl8nbLWciRbFtMNISw_5Lfp1tciTzWnSwTOt09=s0-d-e1-ft#https://images.usw2.cordial.com/1563/600x643/20240411_sub_hero_fleece.jpg" width="600" height="" alt="alt_text" border="0" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #555555; margin: auto; display: block; cursor: pointer; padding-top: 10px;" class="g-img"></a>
+                </td>
+            </tr>
+            <!-- Hero Image, Flush : END -->
+			 <!-- 2 Even Columns : BEGIN -->
+			 <tr>
+	            <td style="padding: 10px; background-color: #ffffff;" class="darkmode-bg">
+	                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+	                    <tr>
+	                        <!-- Column : BEGIN -->
+	                        <th valign="top" width="50%" class="stack-column-center">
+	                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+	                                <tr>
+	                                    <td style="padding: 10px; text-align: center">
+	                                        <a href="https://e.em.joann.com/c2/1563:6616b0c6f43f6ea4b407bb06:ot:6338f27cc9a11c3d540dcc58:1/3415fb46?jwtH=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&jwtP=eyJpYXQiOjE3MTI4MjM0NTEsImNkIjoiLmVtLmpvYW5uLmNvbSIsImNlIjo4NjQwMCwidGsiOiJqb2FubiIsIm10bElEIjoiNjYxNmQwM2Q4YTg0OWM1NzA2MGE4ZTZlIiwibGlua1VybCI6Imh0dHBzOlwvXC93d3cuam9hbm4uY29tXC9mYWJyaWNcL2NvdHRvbi1mYWJyaWNcL3F1aWx0ZXJzLXNob3djYXNlLWNvdHRvbi1mYWJyaWNcLz91dG1fc291cmNlPUpvYW5uJnV0bV9tZWRpdW09RW1haWwmdXRtX2NvbnRlbnQ9SFRNTCZ1dG1fY2FtcGFpZ249MjAyNDA0MTFfRTFfQU1fU0VXSU5HX1N1YmV2ZW50JmJ4aWQ9NjMzOGYyN2NjOWExMWMzZDU0MGRjYzU4In0&jwtS=MOW2LShaS0I3stSObQb4iSSXXU3ZUUnnGFdG9gm3s_c#deeplink"><img src="https://ci3.googleusercontent.com/meips/ADKq_NaTGMY_XIb9fQtg0pqPFrWf2njnCE4EtALC5HMBr3Yvc248lw1-KPdbvQLrtFp1Ob8WlNSdbBTIGXVGxIAmWz64vd-7nXM2t5Si-5nks6X0OTYmAr4TKIUFTiv4eGZ_reAKEUIo8Pu-DkMgYaFBwagpTj7GL8igzYpKLg_0DvqHmGVvHWA=s0-d-e1-ft#https://images.usw2.cordial.com/1563/540x540/Spring_19334689_197881616_19780774_19335116_quilters_showcase.jpeg" width="270" height="" alt="alt_text" border="0" style="width: 100%; max-width: 270px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #555555;"></a>
+	                                    </td>
+	                                </tr>
+	                                <tr style="display: flex; flex-direction: column;">
+	                                    <td style="font-family: sans-serif; font-size: 18px; line-height: 20px; color: #555555; padding: 10px; text-align: center; font-weight: 200;" class="center-on-narrow">
+	                                        <p style="margin: 0;">QUILTER'S SHOWCASE</p>
+	                                    </td>
+										<td style="font-family: sans-serif; font-size: 16px; line-height: 20px; color: #555555; padding: 0; text-align: center; font-weight: 200;" class="center-on-narrow">
+	                                        <p style="margin: 0;">REG. $5.99 YD</p>
+	                                    </td>
+										<td style="font-family: sans-serif; font-size: 14px; line-height: 20px; color: #555555; padding: 0; text-align: center; font-weight: 600;" class="center-on-narrow">
+	                                        <p style="margin: 0;">$3.99 YD</p>
+	                                    </td>
+										<td class="button-td button-td-primary" style="border-radius: 4px; background: #222222;">
+											<a class="button-a button-a-primary" href="https://www.joann.com/fabric/cotton-fabric/quilters-showcase-cotton-fabric/?utm_source=Joann&utm_medium=Email&utm_content=HTML&utm_campaign=20240411_E1_AM_SEWING_Subevent&bxid=6338f27cc9a11c3d540dcc58#deeplink" style="background: #222222; border: 1px solid #000000; font-family: sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; padding: 10px; color: #ffffff; display: block; border-radius: 4px;">Shop now</a>
+										</td>
+	                                </tr>
+	                            </table>
+	                        </th>
+	                        <!-- Column : END -->
+	                        <!-- Column : BEGIN -->
+							<th valign="top" width="50%" class="stack-column-center">
+	                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+	                                <tr>
+	                                    <td style="padding: 10px; text-align: center">
+	                                        <a href="https://e.em.joann.com/c2/1563:6616b0c6f43f6ea4b407bb06:ot:6338f27cc9a11c3d540dcc58:1/796969d1?jwtH=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&jwtP=eyJpYXQiOjE3MTI4MjM0NTEsImNkIjoiLmVtLmpvYW5uLmNvbSIsImNlIjo4NjQwMCwidGsiOiJqb2FubiIsIm10bElEIjoiNjYxNmQwM2Q4YTg0OWM1NzA2MGE4ZTZmIiwibGlua1VybCI6Imh0dHBzOlwvXC93d3cuam9hbm4uY29tXC9mYWJyaWNcL2NvdHRvbi1mYWJyaWNcLz9wcmVmbjE9ZWNvbW1lcmNlVHlwZTImcHJlZnYxPUtlZXBzYWtlJTIwQ2FsaWNvJTIwQ290dG9uJTIwRmFicmljJTdDTm92ZWx0eSUyMENvdHRvbiUyMEZhYnJpYyZ1dG1fc291cmNlPUpvYW5uJnV0bV9tZWRpdW09RW1haWwmdXRtX2NvbnRlbnQ9SFRNTCZ1dG1fY2FtcGFpZ249MjAyNDA0MTFfRTFfQU1fU0VXSU5HX1N1YmV2ZW50JmJ4aWQ9NjMzOGYyN2NjOWExMWMzZDU0MGRjYzU4In0&jwtS=XYkdzP3r8LJDLSvpihhx6FxFFyJvdlueBr6HwOeMMmY#deeplink"><img src="https://ci3.googleusercontent.com/meips/ADKq_NY_3fA-UniE9_FDZB2dtuA4B0PTtwROcuJxmSZ9sdzZsxT_ao5ngGbZofR2y6gyVCrYYeQzaVH9xXrNMpEgqB7PQnnD4ckpbfH-FT4GP1A0uRmpA9cZ1xy6pAycJV90bQOcJgy5mmNQ8irwyS4PYxDMOJD3lHJdug=s0-d-e1-ft#https://images.usw2.cordial.com/1563/600x600/spring_19776384_19776301_19776418_keepsake_cotton.jpg" width="270" height="" alt="alt_text" border="0" style="width: 100%; max-width: 270px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #555555;"></a>
+	                                    </td>
+	                                </tr>
+	                                <tr style="display: flex; flex-direction: column;">
+	                                    <td style="font-family: sans-serif; font-size: 18px; line-height: 20px; color: #555555; padding: 0px 10px 5px 10px; text-align: center; font-weight: 200;" class="center-on-narrow">
+	                                        <p style="margin: 0;">KEEPSAKE CALICO & NOVELTY COTTON PRINTS</p>
+	                                    </td>
+										<td style="font-family: sans-serif; font-size: 16px; line-height: 20px; color: #555555; padding: 0; text-align: center; font-weight: 200;" class="center-on-narrow">
+	                                        <p style="margin: 0;">REG. $9.99–$19.99 YD</p>
+	                                    </td>
+										<td style="font-family: sans-serif; font-size: 14px; line-height: 20px; color: #555555; padding: 0; text-align: center; font-weight: 600;" class="center-on-narrow">
+	                                        <p style="margin: 0;">$6.99 YD</p>
+	                                    </td>
+										<td class="button-td button-td-primary" style="border-radius: 4px; background: #222222;">
+											<a class="button-a button-a-primary" href="https://e.em.joann.com/c2/1563:6616b0c6f43f6ea4b407bb06:ot:6338f27cc9a11c3d540dcc58:1/796969d1?jwtH=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&jwtP=eyJpYXQiOjE3MTI4MjM0NTEsImNkIjoiLmVtLmpvYW5uLmNvbSIsImNlIjo4NjQwMCwidGsiOiJqb2FubiIsIm10bElEIjoiNjYxNmQwM2Q4YTg0OWM1NzA2MGE4ZTZmIiwibGlua1VybCI6Imh0dHBzOlwvXC93d3cuam9hbm4uY29tXC9mYWJyaWNcL2NvdHRvbi1mYWJyaWNcLz9wcmVmbjE9ZWNvbW1lcmNlVHlwZTImcHJlZnYxPUtlZXBzYWtlJTIwQ2FsaWNvJTIwQ290dG9uJTIwRmFicmljJTdDTm92ZWx0eSUyMENvdHRvbiUyMEZhYnJpYyZ1dG1fc291cmNlPUpvYW5uJnV0bV9tZWRpdW09RW1haWwmdXRtX2NvbnRlbnQ9SFRNTCZ1dG1fY2FtcGFpZ249MjAyNDA0MTFfRTFfQU1fU0VXSU5HX1N1YmV2ZW50JmJ4aWQ9NjMzOGYyN2NjOWExMWMzZDU0MGRjYzU4In0&jwtS=XYkdzP3r8LJDLSvpihhx6FxFFyJvdlueBr6HwOeMMmY#deeplink" style="background: #222222; border: 1px solid #000000; font-family: sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; padding: 10px; color: #ffffff; display: block; border-radius: 4px;">Shop now</a>
+										</td>
+	                                </tr>
+	                            </table>
+	                        </th>
+	                        <!-- Column : END -->
+	                    </tr>
+	                </table>
+	            </td>
+	        </tr>
+	        <!-- 2 Even Columns : END -->
+			 <!-- 2 Even Columns : BEGIN -->
+			 <tr>
+	            <td style="padding: 10px; background-color: #ffffff;" class="darkmode-bg">
+	                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+	                    <tr>
+	                        <!-- Column : BEGIN -->
+	                        <th valign="top" width="50%" class="stack-column-center">
+	                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+	                                <tr>
+	                                    <td style="padding: 10px; text-align: center">
+	                                        <a href="https://e.em.joann.com/c2/1563:6616b0c6f43f6ea4b407bb06:ot:6338f27cc9a11c3d540dcc58:1/b8e7bf3a?jwtH=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&jwtP=eyJpYXQiOjE3MTI4MjM0NTEsImNkIjoiLmVtLmpvYW5uLmNvbSIsImNlIjo4NjQwMCwidGsiOiJqb2FubiIsIm10bElEIjoiNjYxNmQwM2Q4YTg0OWM1NzA2MGE4ZTcwIiwibGlua1VybCI6Imh0dHBzOlwvXC93d3cuam9hbm4uY29tXC9zZXdpbmdcL3RocmVhZFwvP3V0bV9zb3VyY2U9Sm9hbm4mdXRtX21lZGl1bT1FbWFpbCZ1dG1fY29udGVudD1IVE1MJnV0bV9jYW1wYWlnbj0yMDI0MDQxMV9FMV9BTV9TRVdJTkdfU3ViZXZlbnQmYnhpZD02MzM4ZjI3Y2M5YTExYzNkNTQwZGNjNTgifQ&jwtS=kWcGJj15j0JT4n-9lr24Tbr_KXgOM8XspMTEIcI-lnQ#deeplink"><img src="https://ci3.googleusercontent.com/meips/ADKq_Na5jpBlBx4hqKxfJOcC2R1pthb3zRuU9T725nB92vFsTOyfw9eltOD9Qs3f2xowtabw-vDBL5fMwGLoctu7Ae1awDui5ECtF_piZnTaJA0ZsLWqP2-WFBgn0hOn-TTdr0wC3LU=s0-d-e1-ft#https://images.usw2.cordial.com/1563/540x540/web_fy24_xprd840925_thread_em.jpg" width="270" height="" alt="alt_text" border="0" style="width: 100%; max-width: 270px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #555555;"></a>
+	                                    </td>
+	                                </tr>
+	                                <tr style="display: flex; flex-direction: column;">
+	                                    <td style="font-family: sans-serif; font-size: 18px; line-height: 20px; color: #555555; padding: 10px; text-align: center; font-weight: 200;" class="center-on-narrow">
+	                                        <p style="margin: 0;">ENTIRE STOCK
+											<br>	THREAD</p>
+	                                    </td>
+										<td style="font-family: sans-serif; font-size: 16px; line-height: 20px; color: #555555; padding: 0; text-align: center; font-weight: 200;" class="center-on-narrow">
+	                                        <p style="margin: 0;">50% OFF ONLINE</p>
+	                                    </td>
+										<td style="font-family: sans-serif; font-size: 14px; line-height: 20px; color: #555555; padding: 0; text-align: center; font-weight: 600;" class="center-on-narrow">
+	                                        <p style="margin: 0;">B3G3 FREE*</p>
+	                                    </td>
+										<td class="button-td button-td-primary" style="border-radius: 4px; background: #222222;">
+											<a class="button-a button-a-primary" href="https://e.em.joann.com/c2/1563:6616b0c6f43f6ea4b407bb06:ot:6338f27cc9a11c3d540dcc58:1/b8e7bf3a?jwtH=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&jwtP=eyJpYXQiOjE3MTI4MjM0NTEsImNkIjoiLmVtLmpvYW5uLmNvbSIsImNlIjo4NjQwMCwidGsiOiJqb2FubiIsIm10bElEIjoiNjYxNmQwM2Q4YTg0OWM1NzA2MGE4ZTcwIiwibGlua1VybCI6Imh0dHBzOlwvXC93d3cuam9hbm4uY29tXC9zZXdpbmdcL3RocmVhZFwvP3V0bV9zb3VyY2U9Sm9hbm4mdXRtX21lZGl1bT1FbWFpbCZ1dG1fY29udGVudD1IVE1MJnV0bV9jYW1wYWlnbj0yMDI0MDQxMV9FMV9BTV9TRVdJTkdfU3ViZXZlbnQmYnhpZD02MzM4ZjI3Y2M5YTExYzNkNTQwZGNjNTgifQ&jwtS=kWcGJj15j0JT4n-9lr24Tbr_KXgOM8XspMTEIcI-lnQ#deeplink" style="background: #222222; border: 1px solid #000000; font-family: sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; padding: 10px; color: #ffffff; display: block; border-radius: 4px;">Shop now</a>
+										</td>
+	                                </tr>
+	                            </table>
+	                        </th>
+	                        <!-- Column : END -->
+	                        <!-- Column : BEGIN -->
+							<th valign="top" width="50%" class="stack-column-center">
+	                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+	                                <tr>
+	                                    <td style="padding: 10px; text-align: center">
+	                                        <a href="https://e.em.joann.com/c2/1563:6616b0c6f43f6ea4b407bb06:ot:6338f27cc9a11c3d540dcc58:1/98a6eedb?jwtH=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&jwtP=eyJpYXQiOjE3MTI4MjM0NTEsImNkIjoiLmVtLmpvYW5uLmNvbSIsImNlIjo4NjQwMCwidGsiOiJqb2FubiIsIm10bElEIjoiNjYxNmQwM2Q4YTg0OWM1NzA2MGE4ZTcxIiwibGlua1VybCI6Imh0dHBzOlwvXC93d3cuam9hbm4uY29tXC9zZXdpbmdcL2N1dHRpbmctbWVhc3VyaW5nXC8_dXRtX3NvdXJjZT1Kb2FubiZ1dG1fbWVkaXVtPUVtYWlsJnV0bV9jb250ZW50PUhUTUwmdXRtX2NhbXBhaWduPTIwMjQwNDExX0UxX0FNX1NFV0lOR19TdWJldmVudCZieGlkPTYzMzhmMjdjYzlhMTFjM2Q1NDBkY2M1OCJ9&jwtS=WKFQ9ofQ7hnBubzbOfXCGH26AnQ8GpGuZe9yGdzNhOY#deeplink"><img src="https://ci3.googleusercontent.com/meips/ADKq_NbTf9ghB0EftiK5BHhM5Pp53hOHW0fl4Cx-WkqzVTkuUuAc5-hKAk3jsU1b9pn5aitmTAZPOTCMu1ZFKHsXODFLcIxsgOnwqBUDdWZz767ze9cInFuU4z0liHdAEWG4D0aUKdiEJmHlXvR9pNDp6sTeJQa6vA=s0-d-e1-ft#https://images.usw2.cordial.com/1563/540x540/011124dm_p3b4_sewing_quilting_cutting_tools_em.jpg" width="270" height="" alt="alt_text" border="0" style="width: 100%; max-width: 270px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #555555;"></a>
+	                                    </td>
+	                                </tr>
+	                                <tr style="display: flex; flex-direction: column;">
+	                                    <td style="font-family: sans-serif; font-size: 18px; line-height: 20px; color: #555555; padding: 0px 10px 5px 10px; text-align: center; font-weight: 200;" class="center-on-narrow">
+	                                        <p style="margin: 0;">SEWING & QUILTING CUTTING TOOLS</p>
+	                                    </td>
+										<td style="font-family: sans-serif; font-size: 16px; line-height: 20px; color: #555555; padding: 0; text-align: center; font-weight: 200;" class="center-on-narrow">
+	                                        <p style="margin: 0;">50% OFF</p>
+	                                    </td>
+										<td class="button-td button-td-primary" style="border-radius: 4px; background: #222222;">
+											<a class="button-a button-a-primary" href="https://e.em.joann.com/c2/1563:6616b0c6f43f6ea4b407bb06:ot:6338f27cc9a11c3d540dcc58:1/98a6eedb?jwtH=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&jwtP=eyJpYXQiOjE3MTI4MjM0NTEsImNkIjoiLmVtLmpvYW5uLmNvbSIsImNlIjo4NjQwMCwidGsiOiJqb2FubiIsIm10bElEIjoiNjYxNmQwM2Q4YTg0OWM1NzA2MGE4ZTcxIiwibGlua1VybCI6Imh0dHBzOlwvXC93d3cuam9hbm4uY29tXC9zZXdpbmdcL2N1dHRpbmctbWVhc3VyaW5nXC8_dXRtX3NvdXJjZT1Kb2FubiZ1dG1fbWVkaXVtPUVtYWlsJnV0bV9jb250ZW50PUhUTUwmdXRtX2NhbXBhaWduPTIwMjQwNDExX0UxX0FNX1NFV0lOR19TdWJldmVudCZieGlkPTYzMzhmMjdjYzlhMTFjM2Q1NDBkY2M1OCJ9&jwtS=WKFQ9ofQ7hnBubzbOfXCGH26AnQ8GpGuZe9yGdzNhOY#deeplink" style="background: #222222; border: 1px solid #000000; font-family: sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; padding: 10px; color: #ffffff; display: block; border-radius: 4px;">Shop now</a>
+										</td>
+	                                </tr>
+	                            </table>
+	                        </th>
+	                        <!-- Column : END -->
+	                    </tr>
+	                </table>
+	            </td>
+	        </tr>
+	        <!-- 2 Even Columns : END -->
+			<tr>
+				<td style="background-color:#efab9b">
+					<table align="center" class="m_4397306562777739110width_100percent" cellpadding="0" cellspacing="0">
+						<tbody>
+							<tr>
+								<td width="20">&nbsp;</td>
+								<td align="left" valign="top">
+									<table width="100%" cellpadding="0" cellspacing="0" bgcolor="#efab9b"> <tbody>
+										<tr>
+											<td height="20" style="line-height:1px;font-size:1px">&nbsp;</td>
+										</tr>
+										<tr>
+											<td align="center" valign="top" class="m_4397306562777739110txt_20">
+												<span style="font-family:'avenir',Arial,Helvetica,sans-serif;font-size:28px;line-height:33px;font-weight:900;color:#000000;text-decoration:none">Spring into savings</span>
+											</td>
+										</tr>
+										<tr>
+											<td align="center" valign="top" class="m_4397306562777739110txt_20">
+												<span style="font-family:'avenir',Arial,Helvetica,sans-serif;font-size:28px;line-height:36px;font-weight:500;color:#000000;text-decoration:none">
+											</span>
+										</td>
+									</tr>
+									<tr>
+										<td height="20" style="line-height:1px;font-size:1px">&nbsp;</td>
+									</tr> 
+								</tbody>
+							</table>
+						</td>
+						<td width="20">&nbsp;</td>
+					</tr>
+				</tbody>
+			</table>
+				</td>
+			</tr>
+
+			 <!-- 2 Even Columns : BEGIN -->
+			 <tr>
+	            <td style="padding: 10px; background-color: #ffffff;" class="darkmode-bg">
+	                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+	                    <tr>
+	                        <!-- Column : BEGIN -->
+	                        <th valign="top" width="50%" class="stack-column-center">
+	                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+	                                <tr>
+	                                    <td style="padding: 10px; text-align: center">
+	                                        <a href="https://e.em.joann.com/c2/1563:6616b0c6f43f6ea4b407bb06:ot:6338f27cc9a11c3d540dcc58:1/cb371c21?jwtH=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&jwtP=eyJpYXQiOjE3MTI4MjM0NTEsImNkIjoiLmVtLmpvYW5uLmNvbSIsImNlIjo4NjQwMCwidGsiOiJqb2FubiIsIm10bElEIjoiNjYxNmQwM2Q4YTg0OWM1NzA2MGE4ZTcyIiwibGlua1VybCI6Imh0dHBzOlwvXC93d3cuam9hbm4uY29tXC9mYWJyaWNcL2ZsZWVjZS1mYWJyaWNcL2FudGktcGlsbC1mbGVlY2UtZmFicmljXC8_dXRtX3NvdXJjZT1Kb2FubiZ1dG1fbWVkaXVtPUVtYWlsJnV0bV9jb250ZW50PUhUTUwmdXRtX2NhbXBhaWduPTIwMjQwNDExX0UxX0FNX1NFV0lOR19TdWJldmVudCZieGlkPTYzMzhmMjdjYzlhMTFjM2Q1NDBkY2M1OCJ9&jwtS=bQwPbMJ1n5qG8D4oW1_J0pPJDg9aphnwQuMA0g7oDxI#deeplink"><img src="https://ci3.googleusercontent.com/meips/ADKq_NbvM2eLM7VsMDTkIXMvY6L2_s5lTzzY6wqZ19OrWQdEZWcHqX6XeR3P6DmiiKk4h9aBwGANeW893t4U2H3POnYUCfdBufNAzqRJti9hR6A0xpxNycu5Sn0ck1bthZDilu6AEUmdfRS_1LE0yZ1giuYiJhUeqiujWrrCzg=s0-d-e1-ft#https://images.usw2.cordial.com/1563/540x540/Spring_AP_fleece_general_19800200_19800218_19800291.jpeg" width="270" height="" alt="alt_text" border="0" style="width: 100%; max-width: 270px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #555555;"></a>
+	                                    </td>
+	                                </tr>
+	                                <tr style="display: flex; flex-direction: column;">
+	                                    <td style="font-family: sans-serif; font-size: 18px; line-height: 20px; color: #555555; padding: 10px; text-align: center; font-weight: 200;" class="center-on-narrow">
+	                                        <p style="margin: 0;">Anti-Pill Plush Fleece</p>
+	                                    </td>
+										<td style="font-family: sans-serif; font-size: 16px; line-height: 20px; color: #555555; padding: 0; text-align: center; font-weight: 200;" class="center-on-narrow">
+	                                        <p style="margin: 0;">Reg. $14.99–$29.99 yd</p>
+	                                    </td>
+										<td style="font-family: sans-serif; font-size: 14px; line-height: 20px; color: #555555; padding: 0; text-align: center; font-weight: 600;" class="center-on-narrow">
+	                                        <p style="margin: 0;">$5.99–$6.99 yd</p>
+	                                    </td>
+										<td class="button-td button-td-primary" style="border-radius: 4px; background: #222222;">
+											<a class="button-a button-a-primary" href="https://e.em.joann.com/c2/1563:6616b0c6f43f6ea4b407bb06:ot:6338f27cc9a11c3d540dcc58:1/cb371c21?jwtH=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&jwtP=eyJpYXQiOjE3MTI4MjM0NTEsImNkIjoiLmVtLmpvYW5uLmNvbSIsImNlIjo4NjQwMCwidGsiOiJqb2FubiIsIm10bElEIjoiNjYxNmQwM2Q4YTg0OWM1NzA2MGE4ZTcyIiwibGlua1VybCI6Imh0dHBzOlwvXC93d3cuam9hbm4uY29tXC9mYWJyaWNcL2ZsZWVjZS1mYWJyaWNcL2FudGktcGlsbC1mbGVlY2UtZmFicmljXC8_dXRtX3NvdXJjZT1Kb2FubiZ1dG1fbWVkaXVtPUVtYWlsJnV0bV9jb250ZW50PUhUTUwmdXRtX2NhbXBhaWduPTIwMjQwNDExX0UxX0FNX1NFV0lOR19TdWJldmVudCZieGlkPTYzMzhmMjdjYzlhMTFjM2Q1NDBkY2M1OCJ9&jwtS=bQwPbMJ1n5qG8D4oW1_J0pPJDg9aphnwQuMA0g7oDxI#deeplink" style="background: #222222; border: 1px solid #000000; font-family: sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; padding: 10px; color: #ffffff; display: block; border-radius: 4px;">Shop All</a>
+										</td>
+	                                </tr>
+	                            </table>
+	                        </th>
+	                        <!-- Column : END -->
+	                        <!-- Column : BEGIN -->
+							<th valign="top" width="50%" class="stack-column-center">
+	                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+	                                <tr>
+	                                    <td style="padding: 10px; text-align: center">
+	                                        <a href="https://e.em.joann.com/c2/1563:6616b0c6f43f6ea4b407bb06:ot:6338f27cc9a11c3d540dcc58:1/e7d57f24?jwtH=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&jwtP=eyJpYXQiOjE3MTI4MjM0NTEsImNkIjoiLmVtLmpvYW5uLmNvbSIsImNlIjo4NjQwMCwidGsiOiJqb2FubiIsIm10bElEIjoiNjYxNmQwM2Q4YTg0OWM1NzA2MGE4ZTczIiwibGlua1VybCI6Imh0dHBzOlwvXC93d3cuam9hbm4uY29tXC9mYWJyaWNcL2hvbWUtZGVjb3ItZmFicmljXC9jYW52YXMtaG9tZS1kZWNvci1mYWJyaWNcL2NvdHRvbi1jYW52YXNcLz91dG1fc291cmNlPUpvYW5uJnV0bV9tZWRpdW09RW1haWwmdXRtX2NvbnRlbnQ9SFRNTCZ1dG1fY2FtcGFpZ249MjAyNDA0MTFfRTFfQU1fU0VXSU5HX1N1YmV2ZW50JmJ4aWQ9NjMzOGYyN2NjOWExMWMzZDU0MGRjYzU4In0&jwtS=1CQXjEzJHnJTDCLeyF7_29SGUqxiCKIIB0tC9x9z1og#deeplink"><img src="https://ci3.googleusercontent.com/meips/ADKq_NYAfPz4cxYxmJlZ4zzq6OVZy9xOUQpLvI-45EaxinXR6X75ecjx-vCPnLlKOKezUVOiGy5zVQD--HGy0I-RygciWJ-mi22EWGjv1XwEArpDt5sUd9o45yFWsDU3IOjI_EgQE05k=s0-d-e1-ft#https://images.usw2.cordial.com/1563/540x540/120723dm_p6b8_cotton_canvas_em.jpg" width="270" height="" alt="alt_text" border="0" style="width: 100%; max-width: 270px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #555555;"></a>
+	                                    </td>
+	                                </tr>
+	                                <tr style="display: flex; flex-direction: column;">
+	                                    <td style="font-family: sans-serif; font-size: 18px; line-height: 20px; color: #555555; padding: 0px 10px 5px 10px; text-align: center; font-weight: 200;" class="center-on-narrow">
+	                                        <p style="margin: 0;">Cotton Canvas Fabrics</p>
+	                                    </td>
+										<td style="font-family: sans-serif; font-size: 16px; line-height: 20px; color: #555555; padding: 0; text-align: center; font-weight: 200;" class="center-on-narrow">
+	                                        <p style="margin: 0;">Reg. $10.99–$30.99 yd</p>
+	                                    </td>
+										<td style="font-family: sans-serif; font-size: 14px; line-height: 20px; color: #555555; padding: 0; text-align: center; font-weight: 600;" class="center-on-narrow">
+	                                        <p style="margin: 0;">$4.99 yd</p>
+	                                    </td>
+										<td class="button-td button-td-primary" style="border-radius: 4px; background: #222222;">
+											<a class="button-a button-a-primary" href="https://e.em.joann.com/c2/1563:6616b0c6f43f6ea4b407bb06:ot:6338f27cc9a11c3d540dcc58:1/e7d57f24?jwtH=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&jwtP=eyJpYXQiOjE3MTI4MjM0NTEsImNkIjoiLmVtLmpvYW5uLmNvbSIsImNlIjo4NjQwMCwidGsiOiJqb2FubiIsIm10bElEIjoiNjYxNmQwM2Q4YTg0OWM1NzA2MGE4ZTczIiwibGlua1VybCI6Imh0dHBzOlwvXC93d3cuam9hbm4uY29tXC9mYWJyaWNcL2hvbWUtZGVjb3ItZmFicmljXC9jYW52YXMtaG9tZS1kZWNvci1mYWJyaWNcL2NvdHRvbi1jYW52YXNcLz91dG1fc291cmNlPUpvYW5uJnV0bV9tZWRpdW09RW1haWwmdXRtX2NvbnRlbnQ9SFRNTCZ1dG1fY2FtcGFpZ249MjAyNDA0MTFfRTFfQU1fU0VXSU5HX1N1YmV2ZW50JmJ4aWQ9NjMzOGYyN2NjOWExMWMzZDU0MGRjYzU4In0&jwtS=1CQXjEzJHnJTDCLeyF7_29SGUqxiCKIIB0tC9x9z1og#deeplink" style="background: #222222; border: 1px solid #000000; font-family: sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; padding: 10px; color: #ffffff; display: block; border-radius: 4px;">Shop All</a>
+										</td>
+	                                </tr>
+	                            </table>
+	                        </th>
+	                        <!-- Column : END -->
+	                    </tr>
+	                </table>
+	            </td>
+	        </tr>
+	        <!-- 2 Even Columns : END -->
+			 <!-- 2 Even Columns : BEGIN -->
+			 <tr>
+	            <td style="padding: 10px; background-color: #ffffff;" class="darkmode-bg">
+	                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+	                    <tr>
+	                        <!-- Column : BEGIN -->
+	                        <th valign="top" width="50%" class="stack-column-center">
+	                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+	                                <tr>
+	                                    <td style="padding: 10px; text-align: center">
+	                                        <a href="https://e.em.joann.com/c2/1563:6616b0c6f43f6ea4b407bb06:ot:6338f27cc9a11c3d540dcc58:1/f4bfa7f1?jwtH=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&jwtP=eyJpYXQiOjE3MTI4MjM0NTEsImNkIjoiLmVtLmpvYW5uLmNvbSIsImNlIjo4NjQwMCwidGsiOiJqb2FubiIsIm10bElEIjoiNjYxNmQwM2Q4YTg0OWM1NzA2MGE4ZTc0IiwibGlua1VybCI6Imh0dHBzOlwvXC93d3cuam9hbm4uY29tXC9mYWJyaWNcL2ZsZWVjZS1mYWJyaWNcL3Nldy1sdXNoLWZsZWVjZS1mYWJyaWNcLz91dG1fc291cmNlPUpvYW5uJnV0bV9tZWRpdW09RW1haWwmdXRtX2NvbnRlbnQ9SFRNTCZ1dG1fY2FtcGFpZ249MjAyNDA0MTFfRTFfQU1fU0VXSU5HX1N1YmV2ZW50JmJ4aWQ9NjMzOGYyN2NjOWExMWMzZDU0MGRjYzU4In0&jwtS=fUzacYGkIgU9LKJZ46fpIOoYWTbYgGJzs7q7tImfkCs#deeplink"><img src="https://ci3.googleusercontent.com/meips/ADKq_NZ14dG262UBa4X_3VKYZ8XeKI2A_kFwUfAK6Uy-v_LjDyR02GnlLUa3_REn3xYF1zdDEER_YA_fnMbveQGKRua1AMqcfnEkCRGa_YA4qdsYpHPCEPLBoze7NPXkAttEXA=s0-d-e1-ft#https://images.usw2.cordial.com/1563/540x540/021524DM_P11B9_soft_minky.jpg" width="270" height="" alt="alt_text" border="0" style="width: 100%; max-width: 270px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #555555;"></a>
+	                                    </td>
+	                                </tr>
+	                                <tr style="display: flex; flex-direction: column;">
+	                                    <td style="font-family: sans-serif; font-size: 18px; line-height: 20px; color: #555555; padding: 10px; text-align: center; font-weight: 200;" class="center-on-narrow">
+	                                        <p style="margin: 0;">Sew Lush</p>
+	                                    </td>
+										<td style="font-family: sans-serif; font-size: 16px; line-height: 20px; color: #555555; padding: 0; text-align: center; font-weight: 200;" class="center-on-narrow">
+	                                        <p style="margin: 0;">Reg. $16.99–$24.99 yd</p>
+	                                    </td>
+										<td style="font-family: sans-serif; font-size: 14px; line-height: 20px; color: #555555; padding: 0; text-align: center; font-weight: 600;" class="center-on-narrow">
+	                                        <p style="margin: 0;">$8.99 yd</p>
+	                                    </td>
+										<td class="button-td button-td-primary" style="border-radius: 4px; background: #222222;">
+											<a class="button-a button-a-primary" href="https://e.em.joann.com/c2/1563:6616b0c6f43f6ea4b407bb06:ot:6338f27cc9a11c3d540dcc58:1/f4bfa7f1?jwtH=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&jwtP=eyJpYXQiOjE3MTI4MjM0NTEsImNkIjoiLmVtLmpvYW5uLmNvbSIsImNlIjo4NjQwMCwidGsiOiJqb2FubiIsIm10bElEIjoiNjYxNmQwM2Q4YTg0OWM1NzA2MGE4ZTc0IiwibGlua1VybCI6Imh0dHBzOlwvXC93d3cuam9hbm4uY29tXC9mYWJyaWNcL2ZsZWVjZS1mYWJyaWNcL3Nldy1sdXNoLWZsZWVjZS1mYWJyaWNcLz91dG1fc291cmNlPUpvYW5uJnV0bV9tZWRpdW09RW1haWwmdXRtX2NvbnRlbnQ9SFRNTCZ1dG1fY2FtcGFpZ249MjAyNDA0MTFfRTFfQU1fU0VXSU5HX1N1YmV2ZW50JmJ4aWQ9NjMzOGYyN2NjOWExMWMzZDU0MGRjYzU4In0&jwtS=fUzacYGkIgU9LKJZ46fpIOoYWTbYgGJzs7q7tImfkCs#deeplink" style="background: #222222; border: 1px solid #000000; font-family: sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; padding: 10px; color: #ffffff; display: block; border-radius: 4px;">Shop All</a>
+										</td>
+	                                </tr>
+	                            </table>
+	                        </th>
+	                        <!-- Column : END -->
+	                        <!-- Column : BEGIN -->
+							<th valign="top" width="50%" class="stack-column-center">
+	                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+	                                <tr>
+	                                    <td style="padding: 10px; text-align: center">
+	                                        <a href="https://e.em.joann.com/c2/1563:6616b0c6f43f6ea4b407bb06:ot:6338f27cc9a11c3d540dcc58:1/e599f1a9?jwtH=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&jwtP=eyJpYXQiOjE3MTI4MjM0NTEsImNkIjoiLmVtLmpvYW5uLmNvbSIsImNlIjo4NjQwMCwidGsiOiJqb2FubiIsIm10bElEIjoiNjYxNmQwM2Q4YTg0OWM1NzA2MGE4ZTc1IiwibGlua1VybCI6Imh0dHBzOlwvXC93d3cuam9hbm4uY29tXC9mYWJyaWNcL2FwcGFyZWwtZmFicmljXC8_cHJlZm4xPWVjb21tZXJjZVR5cGUyJnByZWZ2MT1TcGVjaWFsdHklMjBDb3R0b24lMjBGYWJyaWMlN0NMaW5lbiUyMCUyNiUyMExpbmVuJTIwTG9vayUyMEZhYnJpYyZ1dG1fc291cmNlPUpvYW5uJnV0bV9tZWRpdW09RW1haWwmdXRtX2NvbnRlbnQ9SFRNTCZ1dG1fY2FtcGFpZ249MjAyNDA0MTFfRTFfQU1fU0VXSU5HX1N1YmV2ZW50JmJ4aWQ9NjMzOGYyN2NjOWExMWMzZDU0MGRjYzU4In0&jwtS=2wu8KYw-wSzkIAyVdu2bl95mNOcGDIK2TM2yNVXS5Wg#deeplink"><img src="https://ci3.googleusercontent.com/meips/ADKq_NZnH-EepZcylclpc1_d5Lajj8S7Y7b2YTkCImYMP5aGPDAl021seyqW6UNZLYfyDCdxlgt_Cxein3j3GsjOpvT3MqpoVHChZKZ0spYgdpXp_yMWeAR5k8phZiHFzNDSqY1HuTc8Un82xDuMLI4r-NQ3rg=s0-d-e1-ft#https://images.usw2.cordial.com/1563/540x540/web_19244169_19786961_18591701_cotton_linen.jpg" width="270" height="" alt="alt_text" border="0" style="width: 100%; max-width: 270px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #555555;"></a>
+	                                    </td>
+	                                </tr>
+	                                <tr style="display: flex; flex-direction: column;">
+	                                    <td style="font-family: sans-serif; font-size: 18px; line-height: 20px; color: #555555; padding: 0px 10px 5px 10px; text-align: center; font-weight: 200;" class="center-on-narrow">
+	                                        <p style="margin: 0;">Specialty Cotton, Linen & Linen Look Apparel Fabric</p>
+	                                    </td>
+										<td style="font-family: sans-serif; font-size: 16px; line-height: 20px; color: #555555; padding: 0; text-align: center; font-weight: 200;" class="center-on-narrow">
+	                                        <p style="margin: 0;">Reg. $12.99–$24.99 yd</p>
+	                                    </td>
+										<td style="font-family: sans-serif; font-size: 14px; line-height: 20px; color: #555555; padding: 0; text-align: center; font-weight: 600;" class="center-on-narrow">
+	                                        <p style="margin: 0;">$9.99 yd</p>
+	                                    </td>
+										<td class="button-td button-td-primary" style="border-radius: 4px; background: #222222;">
+											<a class="button-a button-a-primary" href="https://e.em.joann.com/c2/1563:6616b0c6f43f6ea4b407bb06:ot:6338f27cc9a11c3d540dcc58:1/e599f1a9?jwtH=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&jwtP=eyJpYXQiOjE3MTI4MjM0NTEsImNkIjoiLmVtLmpvYW5uLmNvbSIsImNlIjo4NjQwMCwidGsiOiJqb2FubiIsIm10bElEIjoiNjYxNmQwM2Q4YTg0OWM1NzA2MGE4ZTc1IiwibGlua1VybCI6Imh0dHBzOlwvXC93d3cuam9hbm4uY29tXC9mYWJyaWNcL2FwcGFyZWwtZmFicmljXC8_cHJlZm4xPWVjb21tZXJjZVR5cGUyJnByZWZ2MT1TcGVjaWFsdHklMjBDb3R0b24lMjBGYWJyaWMlN0NMaW5lbiUyMCUyNiUyMExpbmVuJTIwTG9vayUyMEZhYnJpYyZ1dG1fc291cmNlPUpvYW5uJnV0bV9tZWRpdW09RW1haWwmdXRtX2NvbnRlbnQ9SFRNTCZ1dG1fY2FtcGFpZ249MjAyNDA0MTFfRTFfQU1fU0VXSU5HX1N1YmV2ZW50JmJ4aWQ9NjMzOGYyN2NjOWExMWMzZDU0MGRjYzU4In0&jwtS=2wu8KYw-wSzkIAyVdu2bl95mNOcGDIK2TM2yNVXS5Wg#deeplink" style="background: #222222; border: 1px solid #000000; font-family: sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; padding: 10px; color: #ffffff; display: block; border-radius: 4px;">Shop All</a>
+										</td>
+	                                </tr>
+	                            </table>
+	                        </th>
+	                        <!-- Column : END -->
+	                    </tr>
+	                </table>
+	            </td>
+	        </tr>
+	        <!-- 2 Even Columns : END -->
+			<!-- 2 Even Columns : BEGIN -->
+			<tr>
+	            <td style="padding: 10px; background-color: #ffffff;" class="darkmode-bg">
+	                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+	                    <tr>
+	                        <!-- Column : BEGIN -->
+	                        <th valign="top" width="50%" class="stack-column-center">
+	                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+	                                <tr>
+	                                    <td style="padding: 10px; text-align: center">
+	                                        <a href="https://e.em.joann.com/c2/1563:6616b0c6f43f6ea4b407bb06:ot:6338f27cc9a11c3d540dcc58:1/fd379c67?jwtH=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&jwtP=eyJpYXQiOjE3MTI4MjM0NTEsImNkIjoiLmVtLmpvYW5uLmNvbSIsImNlIjo4NjQwMCwidGsiOiJqb2FubiIsIm10bElEIjoiNjYxNmQwM2Q4YTg0OWM1NzA2MGE4ZTc2IiwibGlua1VybCI6Imh0dHBzOlwvXC93d3cuam9hbm4uY29tXC9mYWJyaWNcL2ZlYXR1cmVkLWJyYW5kcy1mYWJyaWNcL2VkZGllLWJhdWVyLWZhYnJpY1wvP3V0bV9zb3VyY2U9Sm9hbm4mdXRtX21lZGl1bT1FbWFpbCZ1dG1fY29udGVudD1IVE1MJnV0bV9jYW1wYWlnbj0yMDI0MDQxMV9FMV9BTV9TRVdJTkdfU3ViZXZlbnQmYnhpZD02MzM4ZjI3Y2M5YTExYzNkNTQwZGNjNTgifQ&jwtS=GBkMrXUHaRYzbJNZQTgCvh015ZKJRmqrRxh5vs_irUA#deeplink"><img src="https://ci3.googleusercontent.com/meips/ADKq_NaCyMZxhy4y-WTVqRpfhkJAgdH6-XSBzVFTPG_s47IDnlZiFvJZvTyJ6Pzo8FAzxbSBQu44D0GWNbm7uNI61bQ-Q05n7wN86yX4zUVB5e1CRaxU8-pw9JlCeqyllszD_8_zWm_gbPl6iKM4qsJ67O8T1WghZYPNrECfpNcBh-og10p4FNwNbg=s0-d-e1-ft#https://images.usw2.cordial.com/1563/540x540/2324-77624_Eddie_Bauer_Campaign_Core_Shacket_Pillow_Appliques_em.jpg" width="270" height="" alt="alt_text" border="0" style="width: 100%; max-width: 270px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #555555;"></a>
+	                                    </td>
+	                                </tr>
+	                                <tr style="display: flex; flex-direction: column;">
+	                                    <td style="font-family: sans-serif; font-size: 18px; line-height: 20px; color: #555555; padding: 10px; text-align: center; font-weight: 200;" class="center-on-narrow">
+	                                        <p style="margin: 0;">Eddie Bauer® Fabrics & Appliques</p>
+	                                    </td>
+										<td style="font-family: sans-serif; font-size: 14px; line-height: 20px; color: #555555; padding: 0; text-align: center; font-weight: 600;" class="center-on-narrow">
+	                                        <p style="margin: 0;">40% off</p>
+	                                    </td>
+										<td class="button-td button-td-primary" style="border-radius: 4px; background: #222222;">
+											<a class="button-a button-a-primary" href="https://e.em.joann.com/c2/1563:6616b0c6f43f6ea4b407bb06:ot:6338f27cc9a11c3d540dcc58:1/fd379c67?jwtH=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&jwtP=eyJpYXQiOjE3MTI4MjM0NTEsImNkIjoiLmVtLmpvYW5uLmNvbSIsImNlIjo4NjQwMCwidGsiOiJqb2FubiIsIm10bElEIjoiNjYxNmQwM2Q4YTg0OWM1NzA2MGE4ZTc2IiwibGlua1VybCI6Imh0dHBzOlwvXC93d3cuam9hbm4uY29tXC9mYWJyaWNcL2ZlYXR1cmVkLWJyYW5kcy1mYWJyaWNcL2VkZGllLWJhdWVyLWZhYnJpY1wvP3V0bV9zb3VyY2U9Sm9hbm4mdXRtX21lZGl1bT1FbWFpbCZ1dG1fY29udGVudD1IVE1MJnV0bV9jYW1wYWlnbj0yMDI0MDQxMV9FMV9BTV9TRVdJTkdfU3ViZXZlbnQmYnhpZD02MzM4ZjI3Y2M5YTExYzNkNTQwZGNjNTgifQ&jwtS=GBkMrXUHaRYzbJNZQTgCvh015ZKJRmqrRxh5vs_irUA#deeplink" style="background: #222222; border: 1px solid #000000; font-family: sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; padding: 10px; color: #ffffff; display: block; border-radius: 4px;">Shop All</a>
+										</td>
+	                                </tr>
+	                            </table>
+	                        </th>
+	                        <!-- Column : END -->
+	                        <!-- Column : BEGIN -->
+							<th valign="top" width="50%" class="stack-column-center">
+	                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+	                                <tr>
+	                                    <td style="padding: 10px; text-align: center">
+	                                        <a href="https://e.em.joann.com/c2/1563:6616b0c6f43f6ea4b407bb06:ot:6338f27cc9a11c3d540dcc58:1/0c499026?jwtH=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&jwtP=eyJpYXQiOjE3MTI4MjM0NTEsImNkIjoiLmVtLmpvYW5uLmNvbSIsImNlIjo4NjQwMCwidGsiOiJqb2FubiIsIm10bElEIjoiNjYxNmQwM2Q4YTg0OWM1NzA2MGE4ZTc3IiwibGlua1VybCI6Imh0dHBzOlwvXC93d3cuam9hbm4uY29tXC9zZXdpbmdcL2ZvYW0tYW5kLWZpYmVyXC8_dXRtX3NvdXJjZT1Kb2FubiZ1dG1fbWVkaXVtPUVtYWlsJnV0bV9jb250ZW50PUhUTUwmdXRtX2NhbXBhaWduPTIwMjQwNDExX0UxX0FNX1NFV0lOR19TdWJldmVudCZieGlkPTYzMzhmMjdjYzlhMTFjM2Q1NDBkY2M1OCJ9&jwtS=ilLVCTUZwE8T3jbmkgMK3oVozW-WUykJqMiEdFQanuQ#deeplink"><img src="https://ci3.googleusercontent.com/meips/ADKq_NaSqDB58uAANIo54OymVzm0rmvilOI0Ayx0qcGoSJ1m2c7wnJMybL6y0yfmoFbFoaGdyGb5NRUnGL8U9Awz4hLBJ8pjJOt1JMlNgJ9T63wh03PaZFmrJqLxwhTIYOZl09dGmxtwKMOBiiS86KBEUp0R=s0-d-e1-ft#https://images.usw2.cordial.com/1563/1200x1200/0109PC_foam_stuffing_batting_pillow_form.jpg" width="270" height="" alt="alt_text" border="0" style="width: 100%; max-width: 270px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #555555;"></a>
+	                                    </td>
+	                                </tr>
+	                                <tr style="display: flex; flex-direction: column;">
+	                                    <td style="font-family: sans-serif; font-size: 18px; line-height: 20px; color: #555555; padding: 0px 10px 5px 10px; text-align: center; font-weight: 200;" class="center-on-narrow">
+	                                        <p style="margin: 0;">ENTIRE STOCK<br>
+												Foam, Stuffing, Batting & Pillow Forms</p>
+	                                    </td>
+										<td style="font-family: sans-serif; font-size: 14px; line-height: 20px; color: #555555; padding: 0; text-align: center; font-weight: 600;" class="center-on-narrow">
+	                                        <p style="margin: 0;">40% off</p>
+	                                    </td>
+										<td class="button-td button-td-primary" style="border-radius: 4px; background: #222222;">
+											<a class="button-a button-a-primary" href="https://e.em.joann.com/c2/1563:6616b0c6f43f6ea4b407bb06:ot:6338f27cc9a11c3d540dcc58:1/0c499026?jwtH=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&jwtP=eyJpYXQiOjE3MTI4MjM0NTEsImNkIjoiLmVtLmpvYW5uLmNvbSIsImNlIjo4NjQwMCwidGsiOiJqb2FubiIsIm10bElEIjoiNjYxNmQwM2Q4YTg0OWM1NzA2MGE4ZTc3IiwibGlua1VybCI6Imh0dHBzOlwvXC93d3cuam9hbm4uY29tXC9zZXdpbmdcL2ZvYW0tYW5kLWZpYmVyXC8_dXRtX3NvdXJjZT1Kb2FubiZ1dG1fbWVkaXVtPUVtYWlsJnV0bV9jb250ZW50PUhUTUwmdXRtX2NhbXBhaWduPTIwMjQwNDExX0UxX0FNX1NFV0lOR19TdWJldmVudCZieGlkPTYzMzhmMjdjYzlhMTFjM2Q1NDBkY2M1OCJ9&jwtS=ilLVCTUZwE8T3jbmkgMK3oVozW-WUykJqMiEdFQanuQ#deeplink" style="background: #222222; border: 1px solid #000000; font-family: sans-serif; font-size: 15px; line-height: 15px; text-decoration: none; padding: 10px; color: #ffffff; display: block; border-radius: 4px;">Shop All</a>
+										</td>
+	                                </tr>
+	                            </table>
+	                        </th>
+	                        <!-- Column : END -->
+	                    </tr>
+	                </table>
+	            </td>
+	        </tr>
+	        <!-- 2 Even Columns : END -->
+
+			
+
+          
+
+	    </table>
+	    <!-- Email Body : END -->
+
+	    <!-- Email Footer : BEGIN -->
+        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="margin: auto;" class="footer">
+	        <tr>
+	            <td style="padding: 20px; font-family: sans-serif; font-size: 12px; line-height: 15px; text-align: center; color: #ffffff;">
+	                <webversion style="color: #000000; text-decoration: underline; font-weight: bold;">View as a Web Page</webversion>
+	                <br><br>
+	                Company Name<br><span class="unstyle-auto-detected-links">123 Fake Street, SpringField, OR, 97477 US<br>(123) 456-7890</span>
+	                <br><br>
+	                <unsubscribe style="color: #000000; text-decoration: underline;">unsubscribe</unsubscribe>
+	            </td>
+	        </tr>
+	    </table>
+	    <!-- Email Footer : END -->
+
+
+    <!--[if mso | IE]>
+    </td>
+    </tr>
+    </table>
+    <![endif]-->
+    </center>
+</body>
+</html>
